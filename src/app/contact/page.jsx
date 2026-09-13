@@ -56,13 +56,7 @@ export default function ContactPage() {
       : defaultDepartments;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.4 }}
-      className="bg-slate-50 min-h-screen"
-    >
+    <div className="bg-slate-50 min-h-screen">
       {/* ── HEADER HERO BANNER (Light & Elegant) ───────────────────────── */}
       <section className="relative bg-gradient-to-b from-[#edf7f2] via-[#f8fbf9] to-white text-slate-900 py-16 sm:py-20 border-b border-[#dceee3] overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl pointer-events-none" />
@@ -132,6 +126,6 @@ export default function ContactPage() {
         inquirySubmitting={inquirySubmitting}
         inquirySuccess={inquirySuccess}
       />
-    </motion.div>
+    </div>
   );
 }

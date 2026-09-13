@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   Users,
@@ -114,13 +115,14 @@ const FacilitiesSection = ({ portalData, onNavigate }) => {
                   {fac.description}
                 </p>
 
-                <div
-                  onClick={() => onNavigate && onNavigate('facilities')}
+                <Link
+                  href="/facilities"
+                  prefetch={true}
                   className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-extrabold text-[#0b3d2e] group-hover:translate-x-1 transition-transform cursor-pointer"
                 >
                   <span>Explore Facility Standards</span>
                   <ArrowRight size={14} />
-                </div>
+                </Link>
               </motion.div>
             );
           })}

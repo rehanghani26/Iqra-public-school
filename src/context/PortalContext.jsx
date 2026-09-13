@@ -68,7 +68,7 @@ export const PortalProvider = ({ children }) => {
     const target = pageId === 'home' ? '/' : `/${pageId}`;
     router.push(target);
     if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
     }
   };
 

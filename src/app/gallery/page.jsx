@@ -37,10 +37,7 @@ export default function GalleryPage() {
           <div className="flex items-center justify-center gap-2 text-xs font-bold text-slate-500 mb-2">
             <Link
               href="/"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate && onNavigate('home');
-              }}
+              prefetch={true}
               className="hover:text-[#0b3d2e] transition-colors"
             >
               Home
@@ -132,20 +129,22 @@ export default function GalleryPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 relative z-10 w-full lg:w-auto flex-shrink-0">
-            <button
-              onClick={() => onNavigate && onNavigate('admissions')}
+            <Link
+              href="/admissions"
+              prefetch={true}
               className="w-full sm:w-auto bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-lg shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer border border-amber-300/60"
             >
               <GraduationCap size={16} />
               <span>Apply for Admission</span>
-            </button>
-            <button
-              onClick={() => onNavigate && onNavigate('contact')}
+            </Link>
+            <Link
+              href="/contact"
+              prefetch={true}
               className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-white/25 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer backdrop-blur-md"
             >
               <Phone size={14} />
               <span>Contact Admissions Desk</span>
-            </button>
+            </Link>
           </div>
         </div>
       </section>

@@ -21,6 +21,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import {
   schoolTemplate,
@@ -522,13 +523,14 @@ const GallerySection = ({ portalData, limit, isPreview = false, onNavigate }) =>
             transition={{ duration: 0.5 }}
             className="mt-12 sm:mt-14 text-center flex flex-col items-center justify-center space-y-3"
           >
-            <button
-              onClick={handleNavigateToGallery}
+            <Link
+              href="/gallery"
+              prefetch={true}
               className="inline-flex items-center gap-3 bg-gradient-to-r from-[#06261c] via-[#0b3d2e] to-[#0a4233] hover:from-[#0b3d2e] hover:to-[#072c21] text-white font-bold text-sm sm:text-base px-8 py-4 rounded-full shadow-xl shadow-[#0b3d2e]/25 hover:scale-105 active:scale-95 transition-all border border-emerald-500/40 cursor-pointer group"
             >
               <span>See More in Full Gallery</span>
               <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform text-amber-400" />
-            </button>
+            </Link>
             <p className="text-xs sm:text-sm text-slate-500 font-medium">
               Explore all {rawItems.length}+ moments covering sports meets, science exhibitions, national festivals &amp; campus life.
             </p>

@@ -62,7 +62,8 @@ const Header = ({ portalData, activePage = 'home', onNavigate }) => {
           {/* School Emblem + School Name (Left) */}
           <Link
             href="/"
-            onClick={() => handleNavClick('home')}
+            prefetch={true}
+            onClick={() => setMobileMenuOpen(false)}
             className="flex items-center gap-2.5 sm:gap-3.5 group text-left min-w-0 sm:min-w-max flex-shrink-0"
           >
             {/* Emblem Logo */}
@@ -99,10 +100,7 @@ const Header = ({ portalData, activePage = 'home', onNavigate }) => {
                 <Link
                   key={item.id}
                   href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(item.id);
-                  }}
+                  prefetch={true}
                   className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all ${
                     isActive
                       ? 'bg-white text-[#0b3d2e] shadow-md scale-105 font-black'
@@ -126,13 +124,14 @@ const Header = ({ portalData, activePage = 'home', onNavigate }) => {
               <Search size={16} />
             </button>
 
-            <button
-              onClick={() => handleNavClick('admissions')}
+            <Link
+              href="/admissions"
+              prefetch={true}
               className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-lg shadow-amber-500/25 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer border border-amber-300/60"
             >
               <span>Apply Online</span>
               <ArrowRight size={14} />
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Hamburger Menu Toggle */}
@@ -162,9 +161,11 @@ const Header = ({ portalData, activePage = 'home', onNavigate }) => {
               {navItems.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <button
+                  <Link
                     key={item.id}
-                    onClick={() => handleNavClick(item.id)}
+                    href={item.href}
+                    prefetch={true}
+                    onClick={() => setMobileMenuOpen(false)}
                     className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between ${
                       activePage === item.id
                         ? 'bg-white text-[#0b3d2e] shadow-md font-black'
@@ -175,19 +176,21 @@ const Header = ({ portalData, activePage = 'home', onNavigate }) => {
                       <Icon size={16} /> {item.label}
                     </span>
                     <ChevronRight size={14} className="opacity-50" />
-                  </button>
+                  </Link>
                 );
               })}
             </div>
 
             <div className="mt-5 pt-5 border-t border-emerald-900/60 flex flex-col gap-2.5">
-              <button
-                onClick={() => handleNavClick('admissions')}
+              <Link
+                href="/admissions"
+                prefetch={true}
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black py-3 rounded-xl text-xs shadow-lg flex items-center justify-center gap-2 border border-amber-300/60"
               >
                 <span>Apply Online</span>
                 <ArrowRight size={14} />
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}

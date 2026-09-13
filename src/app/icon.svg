@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b3d2e"/>
+      <stop offset="100%" stop-color="#06261c"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield Background -->
+  <path d="M16 2 L28 6 C28 18 20 27 16 30 C12 27 4 18 4 6 Z" fill="url(#shieldGrad)" stroke="#10b981" stroke-width="1.2"/>
+  <!-- Open Book Emblem -->
+  <path d="M16 12 C13.5 10.5 10 10.5 8 11.5 L8 21 C10 20 13.5 20 16 21.5 C18.5 20 22 20 24 21 L24 11.5 C22 10.5 18.5 10.5 16 12 Z" fill="url(#goldGrad)"/>
+  <path d="M16 12 L16 21.5" stroke="#0b3d2e" stroke-width="1"/>
+  <!-- Star / Sparkle on Top -->
+  <circle cx="16" cy="7" r="1.5" fill="#fef08a"/>
+</svg>

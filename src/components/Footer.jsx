@@ -47,8 +47,9 @@ const Footer = ({ portalData, onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
           {/* Col 1 & 2: School Branding & Mission */}
           <div className="lg:col-span-2 space-y-4">
-            <button
-              onClick={() => handleNav('home')}
+            <Link
+              href="/"
+              prefetch={true}
               className="flex items-center gap-3 text-left group cursor-pointer"
             >
               <div className="w-12 h-12 rounded-2xl bg-[#0b3d2e] flex items-center justify-center text-white shadow-lg shadow-[#0b3d2e]/20 border border-emerald-500/30 group-hover:scale-105 transition-transform overflow-hidden">
@@ -70,7 +71,7 @@ const Footer = ({ portalData, onNavigate }) => {
                   {affiliation}
                 </span>
               </div>
-            </button>
+            </Link>
 
             <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed max-w-sm">
               "{tagline}" — Fostering global scholars, ethical leaders, and creative thinkers through world-class educators, modern labs, and athletic excellence.
@@ -92,60 +93,67 @@ const Footer = ({ portalData, onNavigate }) => {
             </h5>
             <ul className="space-y-2.5 font-semibold">
               <li>
-                <button
-                  onClick={() => handleNav('home')}
-                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600"
+                <Link
+                  href="/"
+                  prefetch={true}
+                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600 block"
                 >
                   Home Overview
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('about')}
-                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600"
+                <Link
+                  href="/about"
+                  prefetch={true}
+                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600 block"
                 >
                   About Our School
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('academics')}
-                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600"
+                <Link
+                  href="/academics"
+                  prefetch={true}
+                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600 block"
                 >
                   Academic Wings &amp; Curricula
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('facilities')}
-                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600"
+                <Link
+                  href="/facilities"
+                  prefetch={true}
+                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600 block"
                 >
                   Modern Campus Facilities
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('gallery')}
-                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600"
+                <Link
+                  href="/gallery"
+                  prefetch={true}
+                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600 block"
                 >
                   Photo Gallery &amp; Archives
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('admissions')}
-                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600"
+                <Link
+                  href="/admissions"
+                  prefetch={true}
+                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600 block"
                 >
                   Admissions 2026-27
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('contact')}
-                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600"
+                <Link
+                  href="/contact"
+                  prefetch={true}
+                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600 block"
                 >
                   Campus Contact &amp; Hours
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

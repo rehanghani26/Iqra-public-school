@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ChevronRight, Check } from 'lucide-react';
 
@@ -110,13 +111,14 @@ const AcademicWings = ({ portalData, onNavigate }) => {
                 </div>
               </div>
 
-              <div
-                onClick={() => onNavigate && onNavigate('academics')}
+              <Link
+                href="/academics"
+                prefetch={true}
                 className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0b3d2e] group-hover:text-emerald-700 transition-colors cursor-pointer"
               >
                 <span>Curriculum Details</span>
                 <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>

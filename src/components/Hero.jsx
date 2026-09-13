@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Sparkles,
@@ -115,19 +116,23 @@ const Hero = ({ portalData, onNavigate }) => {
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              onClick={() => onNavigate && onNavigate("admissions")}
-              className="inline-flex items-center gap-2.5 bg-white border border-[#d2e8dc] text-slate-800 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold hover:border-[#0b3d2e] transition-all cursor-pointer group shadow-2xs"
             >
-              <div className="w-6 h-6 rounded-full bg-[#fef3c7] text-[#b45309] flex items-center justify-center font-bold flex-shrink-0">
-                <GraduationCap size={13} />
-              </div>
-              <span className="font-semibold text-slate-800 group-hover:text-[#0b3d2e] transition-colors">
-                {admissionBadge}
-              </span>
-              <ChevronRight
-                size={14}
-                className="text-slate-400 group-hover:translate-x-0.5 transition-transform flex-shrink-0"
-              />
+              <Link
+                href="/admissions"
+                prefetch={true}
+                className="inline-flex items-center gap-2.5 bg-white border border-[#d2e8dc] text-slate-800 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold hover:border-[#0b3d2e] transition-all cursor-pointer group shadow-2xs"
+              >
+                <div className="w-6 h-6 rounded-full bg-[#fef3c7] text-[#b45309] flex items-center justify-center font-bold flex-shrink-0">
+                  <GraduationCap size={13} />
+                </div>
+                <span className="font-semibold text-slate-800 group-hover:text-[#0b3d2e] transition-colors">
+                  {admissionBadge}
+                </span>
+                <ChevronRight
+                  size={14}
+                  className="text-slate-400 group-hover:translate-x-0.5 transition-transform flex-shrink-0"
+                />
+              </Link>
             </motion.div>
 
             {/* Main Headline (Exact editorial serif styling) */}
@@ -166,13 +171,14 @@ const Hero = ({ portalData, onNavigate }) => {
               className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 sm:pt-2"
             >
               {/* Primary: Apply for Admission */}
-              <button
-                onClick={() => onNavigate && onNavigate("admissions")}
+              <Link
+                href="/admissions"
+                prefetch={true}
                 className="bg-[#0b3d2e] hover:bg-[#072c21] text-white font-bold text-xs sm:text-sm px-6 sm:px-7 py-3 sm:py-3.5 rounded-full hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer shadow-xs"
               >
                 <span>Apply for Admission</span>
                 <ArrowRight size={15} />
-              </button>
+              </Link>
 
               {/* Secondary: Take a Virtual Tour */}
             </motion.div>

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   Building2,
@@ -174,13 +175,14 @@ const AboutSection = ({ portalData, onNavigate }) => {
                       </span>
                     </div>
 
-                    <button
-                      onClick={() => onNavigate && onNavigate('about')}
+                    <Link
+                      href="/about"
+                      prefetch={true}
                       className="inline-flex items-center gap-1.5 text-xs font-black bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 px-4 py-2 rounded-full shadow-md hover:scale-105 transition-all cursor-pointer"
                     >
                       <span>Read Message</span>
                       <ArrowRight size={13} />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

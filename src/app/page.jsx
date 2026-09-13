@@ -23,13 +23,7 @@ export default function HomePage() {
   } = usePortal();
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="space-y-0 overflow-x-hidden w-full max-w-full"
-    >
+    <div className="space-y-0 overflow-x-hidden w-full max-w-full">
       {/* 1. Hero Section */}
       <Hero portalData={portalData} onNavigate={onNavigate} />
 
@@ -69,6 +63,6 @@ export default function HomePage() {
         inquirySubmitting={inquirySubmitting}
         inquirySuccess={inquirySuccess}
       />
-    </motion.div>
+    </div>
   );
 }
