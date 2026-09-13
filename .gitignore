@@ -4,3 +4,5 @@ node_modules/
 dist/
 build/
 build/
+.next/
+node_modules/

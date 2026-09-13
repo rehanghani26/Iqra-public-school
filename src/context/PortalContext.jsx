@@ -32,7 +32,7 @@ export const PortalProvider = ({ children }) => {
   const getActivePage = () => {
     if (!pathname || pathname === '/') return 'home';
     const clean = pathname.replace('/', '').toLowerCase();
-    if (['about', 'academics', 'facilities', 'admissions', 'contact'].includes(clean)) {
+    if (['about', 'academics', 'facilities', 'gallery', 'admissions', 'contact'].includes(clean)) {
       return clean;
     }
     return 'home';

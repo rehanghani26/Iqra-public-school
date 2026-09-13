@@ -18,7 +18,9 @@ import {
   Heart,
   Flag,
   Compass,
+  ArrowRight,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import {
   schoolTemplate,
@@ -219,7 +221,8 @@ const CATEGORIES = [
   { id: "sports", label: "Sports & Athletics", count: 2, icon: Trophy },
 ];
 
-const GallerySection = ({ portalData }) => {
+const GallerySection = ({ portalData, limit, isPreview = false, onNavigate }) => {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("all");
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
@@ -274,6 +277,16 @@ const GallerySection = ({ portalData }) => {
     return item.category === activeTab;
   });
 
+  const displayItems = isPreview ? rawItems.slice(0, limit || 3) : filteredItems;
+
+  const handleNavigateToGallery = () => {
+    if (onNavigate) {
+      onNavigate('gallery');
+    } else {
+      router.push('/gallery');
+    }
+  };
+
   const openLightbox = (index) => {
     setLightboxIndex(index);
   };
@@ -284,17 +297,17 @@ const GallerySection = ({ portalData }) => {
 
   const showNext = useCallback(() => {
     if (lightboxIndex !== null) {
-      setLightboxIndex((prev) => (prev + 1) % filteredItems.length);
+      setLightboxIndex((prev) => (prev + 1) % displayItems.length);
     }
-  }, [lightboxIndex, filteredItems.length]);
+  }, [lightboxIndex, displayItems.length]);
 
   const showPrev = useCallback(() => {
     if (lightboxIndex !== null) {
       setLightboxIndex(
-        (prev) => (prev - 1 + filteredItems.length) % filteredItems.length
+        (prev) => (prev - 1 + displayItems.length) % displayItems.length
       );
     }
-  }, [lightboxIndex, filteredItems.length]);
+  }, [lightboxIndex, displayItems.length]);
 
   // Keyboard controls for lightbox modal
   useEffect(() => {
@@ -319,7 +332,7 @@ const GallerySection = ({ portalData }) => {
 
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         {/* ── HEADER TITLE & CONTROLS ───────────────────────────────────── */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -348,52 +361,74 @@ const GallerySection = ({ portalData }) => {
             </p>
           </motion.div>
 
-          {/* ── CATEGORY PILL SELECTORS (Refined Interactive Design) ─── */}
-          <div className="flex items-center gap-1.5 flex-wrap bg-white/95 p-1.5 rounded-2xl border-2 border-[#cfe6d8] shadow-sm backdrop-blur-md">
-            {CATEGORIES.map((tab) => {
-              const isActive = activeTab === tab.id;
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`relative px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
-                    isActive
-                      ? "bg-gradient-to-r from-[#06261c] via-[#0b3d2e] to-[#0a4233] text-white shadow-md shadow-[#0b3d2e]/30 scale-102"
-                      : "text-slate-600 hover:text-[#0b3d2e] hover:bg-emerald-50/70"
-                  }`}
-                >
-                  <Icon
-                    size={14}
-                    className={isActive ? "text-amber-300" : "text-emerald-700/70"}
-                  />
-                  <span>{tab.label}</span>
-                  <span
-                    className={`text-[10px] font-black px-1.5 py-0.5 rounded-full transition-colors ${
+          {/* Right Action: Category Tabs on Full Page OR "Explore All" Button on Home Preview */}
+          {isPreview ? (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex-shrink-0"
+            >
+              <button
+                onClick={handleNavigateToGallery}
+                className="inline-flex items-center gap-2.5 bg-[#0b3d2e] hover:bg-[#072c21] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-md shadow-[#0b3d2e]/20 cursor-pointer border border-emerald-500/30 group"
+              >
+                <span>View Full Gallery ({rawItems.length})</span>
+                <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform text-amber-400" />
+              </button>
+            </motion.div>
+          ) : (
+            <div className="flex items-center gap-1.5 flex-wrap bg-white/95 p-1.5 rounded-2xl border-2 border-[#cfe6d8] shadow-sm backdrop-blur-md">
+              {CATEGORIES.map((tab) => {
+                const isActive = activeTab === tab.id;
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`relative px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                       isActive
-                        ? "bg-amber-400 text-slate-950 font-extrabold shadow-2xs"
-                        : "bg-emerald-100/80 text-[#0b3d2e]"
+                        ? "bg-gradient-to-r from-[#06261c] via-[#0b3d2e] to-[#0a4233] text-white shadow-md shadow-[#0b3d2e]/30 scale-102"
+                        : "text-slate-600 hover:text-[#0b3d2e] hover:bg-emerald-50/70"
                     }`}
                   >
-                    {tab.count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                    <Icon
+                      size={14}
+                      className={isActive ? "text-amber-300" : "text-emerald-700/70"}
+                    />
+                    <span>{tab.label}</span>
+                    <span
+                      className={`text-[10px] font-black px-1.5 py-0.5 rounded-full transition-colors ${
+                        isActive
+                          ? "bg-amber-400 text-slate-950 font-extrabold shadow-2xs"
+                          : "bg-emerald-100/80 text-[#0b3d2e]"
+                      }`}
+                    >
+                      {tab.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
 
-        {/* ── BENTO MOSAIC PHOTO GRID (Refined Editorial Layout) ──────── */}
+        {/* ── PHOTO GRID (Editorial 3-Card on Preview, Bento Mosaic on Full) ── */}
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          className={`grid ${
+            isPreview
+              ? "grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
+              : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          }`}
         >
           <AnimatePresence>
-            {filteredItems.map((item, idx) => {
-              // Dynamic Bento Layout sizing
+            {displayItems.map((item, idx) => {
+              // Dynamic Bento Layout sizing for full page
               const isLargeHero =
-                activeTab === "all" && (idx === 0 || idx === 3);
-              const isWidePanoramic = activeTab === "all" && idx === 10;
+                !isPreview && activeTab === "all" && (idx === 0 || idx === 3);
+              const isWidePanoramic = !isPreview && activeTab === "all" && idx === 10;
 
               return (
                 <motion.div
@@ -405,11 +440,13 @@ const GallerySection = ({ portalData }) => {
                   key={item.id}
                   onClick={() => openLightbox(idx)}
                   className={`group relative rounded-[28px] overflow-hidden bg-white border-2 border-[#dceee3] hover:border-emerald-500 shadow-sm hover:shadow-2xl hover:shadow-[#0b3d2e]/20 cursor-pointer transition-all duration-500 hover:-translate-y-2 flex flex-col justify-end ${
-                    isLargeHero
-                      ? "sm:col-span-2 min-h-[380px] sm:min-h-[440px]"
-                      : isWidePanoramic
-                        ? "sm:col-span-2 min-h-[320px] sm:min-h-[370px]"
-                        : "min-h-[300px] sm:min-h-[340px]"
+                    isPreview
+                      ? "min-h-[360px] sm:min-h-[420px]"
+                      : isLargeHero
+                        ? "sm:col-span-2 min-h-[380px] sm:min-h-[440px]"
+                        : isWidePanoramic
+                          ? "sm:col-span-2 min-h-[320px] sm:min-h-[370px]"
+                          : "min-h-[300px] sm:min-h-[340px]"
                   }`}
                 >
                   {/* Photo Canvas */}
@@ -475,11 +512,33 @@ const GallerySection = ({ portalData }) => {
             })}
           </AnimatePresence>
         </motion.div>
+
+        {/* ── "SEE MORE" CALL TO ACTION (Home Preview Mode) ─────────────── */}
+        {isPreview && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-12 sm:mt-14 text-center flex flex-col items-center justify-center space-y-3"
+          >
+            <button
+              onClick={handleNavigateToGallery}
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#06261c] via-[#0b3d2e] to-[#0a4233] hover:from-[#0b3d2e] hover:to-[#072c21] text-white font-bold text-sm sm:text-base px-8 py-4 rounded-full shadow-xl shadow-[#0b3d2e]/25 hover:scale-105 active:scale-95 transition-all border border-emerald-500/40 cursor-pointer group"
+            >
+              <span>See More in Full Gallery</span>
+              <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform text-amber-400" />
+            </button>
+            <p className="text-xs sm:text-sm text-slate-500 font-medium">
+              Explore all {rawItems.length}+ moments covering sports meets, science exhibitions, national festivals &amp; campus life.
+            </p>
+          </motion.div>
+        )}
       </div>
 
       {/* ── DELUXE LIGHTBOX MODAL (Full Screen with Carousel) ──────────── */}
       <AnimatePresence>
-        {lightboxIndex !== null && filteredItems[lightboxIndex] && (
+        {lightboxIndex !== null && displayItems[lightboxIndex] && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -494,10 +553,10 @@ const GallerySection = ({ portalData }) => {
             >
               <div className="flex items-center gap-3">
                 <span className="text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-xl bg-emerald-700 text-white shadow-xs">
-                  {filteredItems[lightboxIndex].tag}
+                  {displayItems[lightboxIndex].tag}
                 </span>
                 <span className="text-xs font-bold text-slate-300">
-                  {lightboxIndex + 1} / {filteredItems.length}
+                  {lightboxIndex + 1} / {displayItems.length}
                 </span>
               </div>
 
@@ -528,7 +587,7 @@ const GallerySection = ({ portalData }) => {
 
               {/* Photo Display */}
               <motion.div
-                key={filteredItems[lightboxIndex].id}
+                key={displayItems[lightboxIndex].id}
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
@@ -536,8 +595,8 @@ const GallerySection = ({ portalData }) => {
                 className="relative max-h-[68vh] sm:max-h-[74vh] w-auto max-w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-black/40"
               >
                 <img
-                  src={filteredItems[lightboxIndex].img}
-                  alt={filteredItems[lightboxIndex].title}
+                  src={displayItems[lightboxIndex].img}
+                  alt={displayItems[lightboxIndex].title}
                   className="max-h-[68vh] sm:max-h-[74vh] w-auto max-w-full object-contain mx-auto"
                 />
               </motion.div>
@@ -560,10 +619,10 @@ const GallerySection = ({ portalData }) => {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                 <div>
                   <h4 className="font-serif font-black text-lg sm:text-xl text-white">
-                    {filteredItems[lightboxIndex].title}
+                    {displayItems[lightboxIndex].title}
                   </h4>
                   <p className="text-xs text-slate-300 font-medium mt-0.5">
-                    {filteredItems[lightboxIndex].subtitle ||
+                    {displayItems[lightboxIndex].subtitle ||
                       "Iqra Public School Campus Life, Motihari"}
                   </p>
                 </div>
@@ -582,7 +641,7 @@ const GallerySection = ({ portalData }) => {
 
               {/* Bottom Thumbnail Strip */}
               <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
-                {filteredItems.map((thumb, tIdx) => (
+                {displayItems.map((thumb, tIdx) => (
                   <button
                     key={thumb.id}
                     onClick={() => setLightboxIndex(tIdx)}

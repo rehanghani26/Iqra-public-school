@@ -25,7 +25,7 @@ const ContactSection = ({ portalData, onSubmitInquiry, inquirySubmitting, inquir
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-slate-100/60 border-t border-slate-200/80 relative">
+    <section id="contact" className="py-20 sm:py-28 bg-slate-100/60 border-t border-slate-200/80 relative overflow-hidden">
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: School Contact Info & Timings (5 cols) */}

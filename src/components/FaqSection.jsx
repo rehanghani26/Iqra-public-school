@@ -54,7 +54,7 @@ const FaqSection = ({ portalData }) => {
   const faqList = portalData?.faqs && portalData.faqs.length > 0 ? portalData.faqs : faqs;
 
   return (
-    <section className="py-20 sm:py-28 bg-slate-50/70 border-t border-slate-200/80 relative">
+    <section className="py-20 sm:py-28 bg-slate-50/70 border-t border-slate-200/80 relative overflow-hidden">
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">

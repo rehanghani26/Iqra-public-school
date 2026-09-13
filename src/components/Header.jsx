@@ -19,6 +19,7 @@ import {
   Home,
   Shield,
   ArrowRight,
+  Camera,
 } from 'lucide-react';
 
 const Header = ({ portalData, activePage = 'home', onNavigate }) => {
@@ -38,6 +39,7 @@ const Header = ({ portalData, activePage = 'home', onNavigate }) => {
     { id: 'about', label: 'About School', href: '/about', icon: Users },
     { id: 'academics', label: 'Academics', href: '/academics', icon: BookOpen },
     { id: 'facilities', label: 'Facilities', href: '/facilities', icon: Building2 },
+    { id: 'gallery', label: 'Gallery', href: '/gallery', icon: Camera },
     { id: 'admissions', label: 'Admissions', href: '/admissions', icon: GraduationCap },
     { id: 'contact', label: 'Contact', href: '/contact', icon: Phone },
   ];
@@ -52,37 +54,37 @@ const Header = ({ portalData, activePage = 'home', onNavigate }) => {
   return (
     <>
       {/* ── MAIN STICKY NAVBAR (Full Brand Forest Green) ────────────── */}
-      <header className="sticky top-0 z-50 bg-gradient-to-r from-[#06261c] via-[#0b3d2e] to-[#08382b] border-b border-[#145a44]/70 shadow-lg shadow-[#06261c]/30 backdrop-blur-md">
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-[#06261c] via-[#0b3d2e] to-[#08382b] border-b border-[#145a44]/70 shadow-lg shadow-[#06261c]/30 backdrop-blur-md w-full">
         {/* Subtle Top Gold/Emerald Accent Ribbon */}
         <div className="h-0.5 w-full bg-gradient-to-r from-emerald-500 via-amber-400 to-emerald-400 opacity-80" />
 
-        <div className="w-full px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between gap-4">
+        <div className="w-full px-4 sm:px-8 lg:px-10 xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-4">
           {/* School Emblem + School Name (Left) */}
           <Link
             href="/"
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 group text-left flex-shrink-0"
+            className="flex items-center gap-2.5 sm:gap-3.5 group text-left min-w-0 sm:min-w-max flex-shrink-0"
           >
             {/* Emblem Logo */}
-            <div className="w-12 h-12 rounded-2xl bg-white p-1 flex items-center justify-center text-[#0b3d2e] shadow-md border border-white/30 group-hover:scale-105 transition-transform overflow-hidden">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white p-1 flex items-center justify-center text-[#0b3d2e] shadow-md border border-white/30 group-hover:scale-105 transition-transform overflow-hidden flex-shrink-0">
               {portalData?.schoolLogo ? (
                 <img
                   src={portalData.schoolLogo}
                   alt={schoolName}
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-cover rounded-lg sm:rounded-xl"
                 />
               ) : (
                 <div className="relative flex items-center justify-center">
-                  <Shield size={26} className="text-[#0b3d2e]" />
-                  <BookOpen size={13} className="absolute text-emerald-600" />
+                  <Shield size={22} className="text-[#0b3d2e]" />
+                  <BookOpen size={11} className="absolute text-emerald-600" />
                 </div>
               )}
             </div>
-            <div>
-              <span className="font-serif font-black text-xl sm:text-2xl text-white tracking-tight block leading-tight group-hover:text-emerald-200 transition-colors">
+            <div className="min-w-0 sm:min-w-max">
+              <span className="font-serif font-black text-base sm:text-xl lg:text-2xl text-white tracking-tight block leading-tight truncate sm:overflow-visible whitespace-nowrap group-hover:text-emerald-200 transition-colors">
                 {schoolName}
               </span>
-              <span className="text-[9px] sm:text-[10px] font-bold text-emerald-300/90 uppercase tracking-wider block mt-0.5">
+              <span className="text-[8px] sm:text-[9.5px] font-bold text-emerald-300/90 uppercase tracking-wider block mt-0.5 truncate sm:overflow-visible whitespace-nowrap">
                 {affiliation}
               </span>
             </div>
@@ -134,10 +136,10 @@ const Header = ({ portalData, activePage = 'home', onNavigate }) => {
           </div>
 
           {/* Mobile Hamburger Menu Toggle */}
-          <div className="flex sm:hidden items-center gap-2">
+          <div className="flex sm:hidden items-center gap-2 flex-shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
+              className="p-2.5 rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/20 active:scale-95 transition-all"
               aria-label="Toggle Navigation"
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -154,7 +156,7 @@ const Header = ({ portalData, activePage = 'home', onNavigate }) => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="sm:hidden bg-[#072a20] border-b border-[#145a44] px-5 py-6 shadow-2xl sticky top-20 z-40 text-white"
+            className="sm:hidden bg-[#072a20] border-b border-[#145a44] px-4 py-5 shadow-2xl sticky top-16 z-40 text-white overflow-hidden w-full"
           >
             <div className="space-y-2">
               {navItems.map((item) => {

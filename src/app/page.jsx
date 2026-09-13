@@ -28,7 +28,7 @@ export default function HomePage() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="space-y-0"
+      className="space-y-0 overflow-x-hidden w-full max-w-full"
     >
       {/* 1. Hero Section */}
       <Hero portalData={portalData} onNavigate={onNavigate} />
@@ -39,8 +39,13 @@ export default function HomePage() {
       {/* 3. About School Section */}
       <AboutSection portalData={portalData} onNavigate={onNavigate} />
 
-      {/* 4. Campus Photo Gallery (Moved before Academic Wings) */}
-      <GallerySection portalData={portalData} />
+      {/* 4. Campus Photo Gallery (3 items preview + See More button) */}
+      <GallerySection
+        portalData={portalData}
+        limit={3}
+        isPreview={true}
+        onNavigate={onNavigate}
+      />
 
       {/* 5. Academic Wings & Curricula */}
       <AcademicWings portalData={portalData} onNavigate={onNavigate} />

@@ -11,10 +11,10 @@ export default function PortalShell({ children }) {
   const { portalData, activePage, onNavigate, loading } = usePortal();
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-emerald-700 selection:text-white relative">
-      {/* ── Branded Logo Loader on Initial Load / Transitions ─────── */}
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-emerald-700 selection:text-white relative w-full max-w-full overflow-x-hidden">
+      {/* ── Branded Logo Loader (Home Page Only) ─────── */}
       <AnimatePresence>
-        {loading && (
+        {loading && activePage === 'home' && (
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.5, ease: 'easeInOut' } }}

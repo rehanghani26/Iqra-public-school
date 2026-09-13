@@ -125,6 +125,14 @@ const Footer = ({ portalData, onNavigate }) => {
               </li>
               <li>
                 <button
+                  onClick={() => handleNav('gallery')}
+                  className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600"
+                >
+                  Photo Gallery &amp; Archives
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => handleNav('admissions')}
                   className="hover:text-[#0b3d2e] hover:translate-x-1 transition-all cursor-pointer text-slate-600"
                 >

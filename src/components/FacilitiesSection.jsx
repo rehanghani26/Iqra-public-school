@@ -49,7 +49,7 @@ const FacilitiesSection = ({ portalData, onNavigate }) => {
   ];
 
   return (
-    <section id="facilities" className="py-20 sm:py-28 bg-white">
+    <section id="facilities" className="py-20 sm:py-28 bg-white overflow-hidden">
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <span className="inline-block bg-[#edf7f2] border border-[#d2e8dc] text-[#0b3d2e] font-bold text-xs px-3.5 py-1.5 rounded-xl uppercase tracking-wider shadow-xs">

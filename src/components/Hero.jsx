@@ -106,19 +106,19 @@ const Hero = ({ portalData, onNavigate }) => {
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#e1f0e8]/50 rounded-full blur-3xl pointer-events-none" />
 
       {/* ── MAIN HERO ROW (Full Width) ─────────────────────────────────── */}
-      <section className="relative z-10 w-full px-4 sm:px-8 lg:px-12 xl:px-16 pt-10 sm:pt-14 pb-16 lg:pb-24">
+      <section className="relative z-10 w-full px-4 sm:px-8 lg:px-12 xl:px-16 pt-6 sm:pt-14 pb-12 sm:pb-16 lg:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-center">
-          {/* ── LEFT COLUMN: Typography, Badge & CTAs (5 cols) ────────── */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* ── LEFT COLUMN: Typography, Badge & CTAs (5 cols) - order-2 on mobile, order-1 on desktop ────────── */}
+          <div className="lg:col-span-5 space-y-5 sm:space-y-6 order-2 lg:order-1">
             {/* Admissions Badge with Gold Mortarboard Icon */}
             <motion.div
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               onClick={() => onNavigate && onNavigate("admissions")}
-              className="inline-flex items-center gap-2.5 bg-white border border-[#d2e8dc] text-slate-800 px-4 py-1.5 rounded-full text-xs font-bold hover:border-[#0b3d2e] transition-all cursor-pointer group"
+              className="inline-flex items-center gap-2.5 bg-white border border-[#d2e8dc] text-slate-800 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold hover:border-[#0b3d2e] transition-all cursor-pointer group shadow-2xs"
             >
-              <div className="w-6 h-6 rounded-full bg-[#fef3c7] text-[#b45309] flex items-center justify-center font-bold">
+              <div className="w-6 h-6 rounded-full bg-[#fef3c7] text-[#b45309] flex items-center justify-center font-bold flex-shrink-0">
                 <GraduationCap size={13} />
               </div>
               <span className="font-semibold text-slate-800 group-hover:text-[#0b3d2e] transition-colors">
@@ -126,7 +126,7 @@ const Hero = ({ portalData, onNavigate }) => {
               </span>
               <ChevronRight
                 size={14}
-                className="text-slate-400 group-hover:translate-x-0.5 transition-transform"
+                className="text-slate-400 group-hover:translate-x-0.5 transition-transform flex-shrink-0"
               />
             </motion.div>
 
@@ -135,15 +135,15 @@ const Hero = ({ portalData, onNavigate }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-serif font-black text-4xl sm:text-5xl lg:text-6xl text-[#0b3d2e] tracking-tight leading-[1.06]"
+              className="font-serif font-black text-3xl sm:text-5xl lg:text-6xl text-[#0b3d2e] tracking-tight leading-[1.08]"
             >
               {firstName} <br />
               <span className="relative inline-block">
                 {restName}
-                <span className="absolute -bottom-2 left-0 w-32 h-1.5 bg-[#10b981] rounded-full" />
+                <span className="absolute -bottom-1.5 sm:-bottom-2 left-0 w-24 sm:w-32 h-1 sm:h-1.5 bg-[#10b981] rounded-full" />
               </span>
               <br />
-              <span className="font-normal font-sans text-3xl sm:text-4xl lg:text-5xl text-[#0b3d2e]/90 block mt-3">
+              <span className="font-normal font-sans text-2xl sm:text-4xl lg:text-5xl text-[#0b3d2e]/90 block mt-2 sm:mt-3">
                 for a Better Tomorrow
               </span>
             </motion.h1>
@@ -153,47 +153,37 @@ const Hero = ({ portalData, onNavigate }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium max-w-xl"
+              className="text-xs sm:text-base text-slate-600 leading-relaxed font-medium max-w-xl"
             >
               {heroSubtitle}
             </motion.p>
 
-            {/* 3 Call to Action Buttons */}
-            {/* 2 Call to Action Buttons (Shadows removed, Schedule a Visit removed) */}
+            {/* 2 Call to Action Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="flex flex-wrap items-center gap-4 pt-2"
+              className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 sm:pt-2"
             >
-              {/* Primary: Apply for Admission (No shadow) */}
+              {/* Primary: Apply for Admission */}
               <button
                 onClick={() => onNavigate && onNavigate("admissions")}
-                className="bg-[#0b3d2e] hover:bg-[#072c21] text-white font-bold text-xs sm:text-sm px-7 py-3.5 rounded-full hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer"
+                className="bg-[#0b3d2e] hover:bg-[#072c21] text-white font-bold text-xs sm:text-sm px-6 sm:px-7 py-3 sm:py-3.5 rounded-full hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer shadow-xs"
               >
                 <span>Apply for Admission</span>
                 <ArrowRight size={15} />
               </button>
 
-              {/* Secondary: Take a Virtual Tour (No shadow) */}
-              <button
-                onClick={() => onNavigate && onNavigate("facilities")}
-                className="bg-white hover:bg-[#f0f7f3] text-[#0b3d2e] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-[#0b3d2e]/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer"
-              >
-                <span>Take a Virtual Tour</span>
-                <div className="w-6 h-6 rounded-full bg-[#0b3d2e] text-white flex items-center justify-center">
-                  <Play size={10} className="fill-white translate-x-0.5" />
-                </div>
-              </button>
+              {/* Secondary: Take a Virtual Tour */}
             </motion.div>
           </div>
 
-          {/* ── RIGHT COLUMN: Campus & Student Showcase (7 cols - Expanded Size) ── */}
+          {/* ── RIGHT COLUMN: Campus & Student Showcase (7 cols) - order-1 on mobile, order-2 on desktop ── */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="lg:col-span-7 relative"
+            className="lg:col-span-7 relative order-1 lg:order-2"
           >
             {/* Whimsical Handwritten Doodle & Note (Top Right) */}
             <div className="absolute -top-12 right-4 z-20 hidden sm:flex items-center gap-2 text-right">
@@ -216,48 +206,48 @@ const Hero = ({ portalData, onNavigate }) => {
               </svg>
             </div>
 
-            {/* School Campus Photo Frame - Larger Size, Shadows Removed */}
-            <div className="relative rounded-3xl overflow-hidden border-4 border-white min-h-[460px] sm:min-h-[540px] lg:min-h-[600px] xl:min-h-[660px] w-full bg-slate-100 group flex items-center justify-center">
+            {/* School Campus Photo Frame - Responsive Sizing for Mobile */}
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 sm:border-4 border-white h-[260px] sm:h-[380px] md:h-[460px] lg:h-auto lg:min-h-[600px] xl:min-h-[660px] w-full bg-slate-100 group flex items-center justify-center shadow-lg sm:shadow-none">
               <img
                 src={heroImage}
                 alt={`${schoolName} Campus`}
                 className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 ease-out"
               />
 
-              {/* School Facade Plaque Overlay (No shadow) */}
-              <div className="absolute top-5 left-5 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-[#d2e8dc] z-10">
-                <span className="font-serif font-black text-xs sm:text-sm text-[#0b3d2e] block leading-tight">
+              {/* School Facade Plaque Overlay */}
+              <div className="absolute top-3 left-3 sm:top-5 sm:left-5 bg-white/95 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl border border-[#d2e8dc] z-10 shadow-xs">
+                <span className="font-serif font-black text-[11px] sm:text-sm text-[#0b3d2e] block leading-tight">
                   {(schoolName || "Iqra Public School").toUpperCase()}
                 </span>
-                <span className="text-[9px] font-bold text-emerald-700 tracking-wider block mt-0.5 uppercase">
+                <span className="text-[8px] sm:text-[9px] font-bold text-emerald-700 tracking-wider block mt-0.5 uppercase">
                   Learn &bull; Grow &bull; Succeed
                 </span>
               </div>
 
-              {/* Floating Pill on Right of Students (No shadow) */}
+              {/* Floating Pill on Right of Campus Frame */}
               <motion.div
-                animate={{ y: [0, -6, 0] }}
+                animate={{ y: [0, -5, 0] }}
                 transition={{
                   repeat: Infinity,
                   duration: 4,
                   ease: "easeInOut",
                 }}
                 onClick={() => onNavigate && onNavigate("about")}
-                className="absolute bottom-5 right-5 bg-[#0b3d2e]/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl border border-emerald-500/40 flex items-center gap-3 cursor-pointer hover:bg-[#0b3d2e] transition-all z-10"
+                className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 bg-[#0b3d2e]/95 backdrop-blur-md text-white px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-emerald-500/40 flex items-center gap-2 sm:gap-3 cursor-pointer hover:bg-[#0b3d2e] transition-all z-10 shadow-md"
               >
-                <div className="w-8 h-8 rounded-xl bg-emerald-700/80 text-white flex items-center justify-center flex-shrink-0">
-                  <BookOpen size={16} />
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-emerald-700/80 text-white flex items-center justify-center flex-shrink-0">
+                  <BookOpen size={15} />
                 </div>
                 <div>
-                  <span className="text-xs font-black block leading-tight">
+                  <span className="text-[11px] sm:text-xs font-black block leading-tight">
                     Same Values
                   </span>
-                  <span className="text-[10px] text-emerald-200 font-bold block leading-tight">
+                  <span className="text-[9px] sm:text-[10px] text-emerald-200 font-bold block leading-tight">
                     Brighter Futures
                   </span>
                 </div>
-                <div className="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center text-white/80">
-                  <ArrowRight size={11} />
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-white/30 flex items-center justify-center text-white/80 flex-shrink-0">
+                  <ArrowRight size={10} />
                 </div>
               </motion.div>
             </div>
@@ -269,41 +259,50 @@ const Hero = ({ portalData, onNavigate }) => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-12 bg-gradient-to-br from-white via-[#f6fbf8] to-[#edf7f1] rounded-3xl sm:rounded-[32px] border-2 border-[#bfe0ce] p-6 sm:p-7 relative z-20 overflow-hidden shadow-xl shadow-[#0b3d2e]/5"
+          className="mt-10 sm:mt-12 bg-gradient-to-br from-white via-[#f6fbf8] to-[#edf7f1] rounded-2xl sm:rounded-[32px] border-2 border-[#bfe0ce] p-4 sm:p-7 relative z-20 overflow-hidden shadow-xl shadow-[#0b3d2e]/5"
         >
           {/* Top Gradient Accent Ribbon */}
           <div className="h-1.5 w-full bg-gradient-to-r from-emerald-600 via-teal-500 via-amber-500 to-emerald-700 absolute top-0 left-0" />
 
           {/* Subtle Decorative Leaf Watermark */}
           <div className="absolute -bottom-4 -right-4 w-44 h-44 opacity-20 pointer-events-none text-emerald-800">
-            <svg viewBox="0 0 100 100" fill="currentColor" className="w-full h-full">
+            <svg
+              viewBox="0 0 100 100"
+              fill="currentColor"
+              className="w-full h-full"
+            >
               <path d="M50 0C50 35 15 50 0 50C35 50 50 85 50 100C50 65 85 50 100 50C65 50 50 15 50 0Z" />
-              <path d="M20 80C35 60 65 60 80 40C65 55 50 80 20 80Z" opacity="0.6" />
+              <path
+                d="M20 80C35 60 65 60 80 40C65 55 50 80 20 80Z"
+                opacity="0.6"
+              />
             </svg>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pt-1">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center pt-1">
             {/* Left: 5 Key Metric Counters with Rich Jewel Tones (8 cols) */}
-            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-2">
+            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-2">
               {metrics.map((m, idx) => {
                 const Icon = m.icon;
                 const isLast = idx === metrics.length - 1;
                 return (
                   <div
                     key={idx}
-                    className={`flex flex-col items-center text-center p-3 rounded-2xl transition-all duration-300 ${m.hoverBg} relative group ${
+                    className={`flex flex-col items-center text-center p-2.5 sm:p-3 rounded-2xl transition-all duration-300 ${m.hoverBg} relative group ${
                       !isLast ? "md:border-r md:border-emerald-200/60" : ""
-                    }`}
+                    } ${idx === 4 ? "col-span-2 sm:col-span-1" : ""}`}
                   >
                     <div
-                      className={`w-12 h-12 rounded-2xl ${m.bg} flex items-center justify-center mb-2.5 transition-transform duration-300 group-hover:scale-110 shadow-xs`}
+                      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl ${m.bg} flex items-center justify-center mb-2 sm:mb-2.5 transition-transform duration-300 group-hover:scale-110 shadow-xs`}
                     >
-                      <Icon size={22} className={m.color} />
+                      <Icon size={20} className={m.color} />
                     </div>
-                    <div className={`font-serif font-black text-2xl sm:text-3xl tracking-tight mb-0.5 ${m.numColor}`}>
+                    <div
+                      className={`font-serif font-black text-xl sm:text-3xl tracking-tight mb-0.5 ${m.numColor}`}
+                    >
                       {m.value}
                     </div>
-                    <div className="text-[11px] sm:text-xs font-bold text-slate-600 leading-tight">
+                    <div className="text-[10px] sm:text-xs font-bold text-slate-600 leading-tight">
                       {m.label}
                     </div>
                   </div>
@@ -312,7 +311,7 @@ const Hero = ({ portalData, onNavigate }) => {
             </div>
 
             {/* Right: Signature Deep Forest Green Brand Quote Box (4 cols) */}
-            <div className="lg:col-span-4 bg-gradient-to-br from-[#06261c] via-[#0b3d2e] to-[#0d4a38] text-white rounded-2xl p-5 border border-emerald-500/30 shadow-lg relative overflow-hidden group">
+            <div className="lg:col-span-4 bg-gradient-to-br from-[#06261c] via-[#0b3d2e] to-[#0d4a38] text-white rounded-2xl p-4 sm:p-5 border border-emerald-500/30 shadow-lg relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-xl pointer-events-none" />
               <div className="flex items-start gap-3 relative z-10">
                 <span className="font-serif font-black text-4xl sm:text-5xl text-amber-400 leading-none select-none -mt-1 drop-shadow-sm">

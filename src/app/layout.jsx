@@ -24,6 +24,12 @@ const playfair = Playfair_Display({
   display: 'swap',
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata = {
   title: 'Iqra Public School — for a Better Tomorrow',
   description:
@@ -36,7 +42,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${outfit.variable} ${plusJakarta.variable} ${playfair.variable} scroll-smooth`}>
-      <body className="bg-[#fcfdfd] text-slate-800 font-sans antialiased selection:bg-[#0b3d2e] selection:text-white">
+      <body className="bg-[#fcfdfd] text-slate-800 font-sans antialiased selection:bg-[#0b3d2e] selection:text-white overflow-x-hidden max-w-full w-full">
         <PortalProvider>
           <PortalShell>{children}</PortalShell>
         </PortalProvider>
